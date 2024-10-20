@@ -5,6 +5,8 @@ import java.util.Scanner;
  * Solution for Snake problem (kattis)
  * This solution only passes 5/56 test cases :( 
  * idk what is wrong
+ * The problem could be how I check visited. I want to know if a given "thread" has visited that spot,
+ * not if any "thread" has visited it. Way to fix this would probably be painful, refactor code to store
  */
 public class Snake {
 
@@ -50,15 +52,17 @@ public class Snake {
                 if(board[i][j+1]=='.' && !visited[i][j+1]){
                     char[][] newBoard = deepClone(board);
                     newBoard[i][j+1] = '0';
-                    propogate(newBoard, i, j+1, '0');
+                    propagate(newBoard, i, j+1, '0');
                     queue.add(newBoard);
                 }
-                else if(board[i][j+1]==maxval){
-                    char[][] newBoard = deepClone(board);
-                    propogate(newBoard, i, j, '1');
-                    newBoard[i][j] = '1';
-                    newBoard[i][j+1] = '0';
-                    queue.add(newBoard);
+                else if(board[i][j+1]==maxval && maxval!=returnNext(board[i][j])){
+                    // char[][] newBoard = deepClone(board);
+                    // propagate(newBoard, i, j, '1');
+                    // newBoard[i][j] = '1';
+                    // newBoard[i][j+1] = '0';
+                    // queue.add(newBoard);
+                    System.out.println("1");
+                    return;
                 }
             }
             if(i<board.length - 1){
@@ -69,15 +73,17 @@ public class Snake {
                 if(board[i+1][j]=='.' && !visited[i+1][j]){
                     char[][] newBoard = deepClone(board);
                     newBoard[i+1][j] = '0';
-                    propogate(newBoard, i+1, j, '0');
+                    propagate(newBoard, i+1, j, '0');
                     queue.add(newBoard);
                 }
-                else if(board[i+1][j]==maxval){
-                    char[][] newBoard = deepClone(board);
-                    propogate(newBoard, i, j, '1');
-                    newBoard[i][j] = '1';
-                    newBoard[i+1][j] = '0';
-                    queue.add(newBoard);
+                else if(board[i+1][j]==maxval && maxval!=returnNext(board[i][j])){
+                    // char[][] newBoard = deepClone(board);
+                    // propagate(newBoard, i, j, '1');
+                    // newBoard[i][j] = '1';
+                    // newBoard[i+1][j] = '0';
+                    // queue.add(newBoard);
+                    System.out.println("1");
+                    return;
                 }
             }
             if(i>0){
@@ -88,15 +94,17 @@ public class Snake {
                 if(board[i-1][j]=='.' && !visited[i-1][j]){
                     char[][] newBoard = deepClone(board);
                     newBoard[i-1][j] = '0';
-                    propogate(newBoard, i-1, j, '0');
+                    propagate(newBoard, i-1, j, '0');
                     queue.add(newBoard);
                 }
-                else if(board[i-1][j]==maxval){
-                    char[][] newBoard = deepClone(board);
-                    propogate(newBoard, i, j, '1');
-                    newBoard[i][j] = '1';
-                    newBoard[i-1][j] = '0';
-                    queue.add(newBoard);
+                else if(board[i-1][j]==maxval && maxval!=returnNext(board[i][j])){
+                    // char[][] newBoard = deepClone(board);
+                    // propagate(newBoard, i, j, '1');
+                    // newBoard[i][j] = '1';
+                    // newBoard[i-1][j] = '0';
+                    // queue.add(newBoard);
+                    System.out.println("1");
+                    return;
                 }
             }
             if(j>0){
@@ -107,15 +115,17 @@ public class Snake {
                 if(board[i][j-1]=='.' && !visited[i][j-1]){
                     char[][] newBoard = deepClone(board);
                     newBoard[i][j-1] = '0';
-                    propogate(newBoard, i, j-1, '0');
+                    propagate(newBoard, i, j-1, '0');
                     queue.add(newBoard);
                 }
-                else if(board[i][j-1]==maxval){
-                    char[][] newBoard = deepClone(board);
-                    propogate(newBoard, i, j, '1');
-                    newBoard[i][j] = '1';
-                    newBoard[i][j-1] = '0';
-                    queue.add(newBoard);
+                else if(board[i][j-1]==maxval && maxval!=returnNext(board[i][j])){
+                    // char[][] newBoard = deepClone(board);
+                    // propagate(newBoard, i, j, '1');
+                    // newBoard[i][j] = '1';
+                    // newBoard[i][j-1] = '0';
+                    // queue.add(newBoard);
+                    System.out.println("1");
+                    return;
                 }
             }
         }
@@ -123,7 +133,7 @@ public class Snake {
         
     }
 
-    public static void propogate(char[][] board, int i, int j, char target){
+    public static void propagate(char[][] board, int i, int j, char target){
         if(target=='.'){return;}
         boolean check = false;
         // System.out.println(target);
@@ -183,7 +193,7 @@ public class Snake {
         //     System.out.println("That's interesting");
         // }
         target = board[i][j];
-        propogate(board, i, j, target);
+        propagate(board, i, j, target);
     }
 
     public static boolean checkAround(char[][] board, int i, int j){
