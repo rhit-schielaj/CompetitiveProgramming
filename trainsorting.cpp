@@ -13,8 +13,8 @@ for(int i=0; i<n; i++){
 int temp;
 scanf("%d", &temp);
 // dict.push_back(temp);
-dict.insert(temp);
-order.push_back(temp);
+dict.insert(temp);//sorted list of trains to come
+order.push_back(temp);//ordered list of trains that are coming
 }
 
 // std::sort(dict.begin(), dict.end());

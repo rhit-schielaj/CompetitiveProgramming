@@ -2,11 +2,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /*
- * Solution for Snake problem (kattis)
- * This solution only passes 5/56 test cases :( 
- * idk what is wrong
- * The problem could be how I check visited. I want to know if a given "thread" has visited that spot,
- * not if any "thread" has visited it. Way to fix this would probably be painful, refactor code to store
+ * 
+ * Code needs to be changed. Runs out of memory. Instead storing the entire board, I should only store
+ * the positions of the snake (which is actually way easier), and where the snake has visited in the past
  */
 public class Snake {
 
