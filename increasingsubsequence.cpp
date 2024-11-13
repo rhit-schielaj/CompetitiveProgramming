@@ -29,7 +29,10 @@ std::vector<int> lis(std::vector<int> &arr)
                 int second = dpMem[prev][dpMem[prev].size() - 1];
                 if (first > second)
                 {
-                    dpMem[i][dpMem[i].size() - 2] = second;
+                    dp[i] = dp[prev] + 1;
+                    std::vector<int> temp = dpMem[prev];
+                    temp.emplace_back(arr[i]);
+                    dpMem[i] = temp;
                 }
             }
         }
